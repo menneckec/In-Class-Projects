@@ -1,0 +1,87 @@
+// ICP104.cpp : Defines the entry point for the console application.
+//
+
+//Author: Carolyn Mennecke//
+//Date: October 4, 2017//
+//Purpose: Loops and Increment Operator//
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <random>
+#include <ctime>
+using namespace std;
+
+
+int main()
+{
+	//Declare variables//
+	string yesNoSelection;
+	int numberSelection;
+	int correctAnswer;
+
+	int playerScore = 0;
+	bool numericalInputCheck;
+
+	//Directions//
+	cout << "Two numbers are about to appear on the screen. One will be larger than the other." << endl << "Your goal is to select the smaller of the two numbers. ";
+	cout << "To select the choice on the left, type 1. To select the choice on the right, type 2." << endl << "The more you guess correctly, the higher your score will be!" << endl;
+	cout << "Good luck!" << endl;
+	cout << "Type Y to continue, or press any other key to quit the program.";
+	cin >> yesNoSelection;
+
+	while (yesNoSelection.length() > 1) {
+		cout << "That is an invalid input. Please try again." << endl;
+		cin.ignore();
+		cin >> yesNoSelection;
+	}
+
+	while (yesNoSelection == "y" || yesNoSelection == "Y") {
+		cin.ignore();
+		//Randomly generate two numbers and request input//
+		int randomNumber1;
+		int randomNumber2;
+
+		srand(time(0));
+		randomNumber1 = rand();
+		randomNumber2 = rand();
+
+		cout << left << randomNumber1 << setw(15) << right << randomNumber2 << endl;
+		cin >> numberSelection;
+
+		//Calculate and display results//
+			//BEGIN NOTE: If the user inputs a character other than 1, the program runs on an infinite loop.//
+			//I hate to exit the program in the event of a wrong entry, but otherwise the program runs infinitely. This is the only solution that works.//
+		numberSelection == 1 || numberSelection == 2 ? numericalInputCheck = true : numericalInputCheck = false;
+
+		if (numericalInputCheck == false) {
+			cout << "That is an invalid input. Exiting..." << endl;
+			system("pause");
+			return 0;
+		}
+			//END NOTE: I'm not sure why cin.ignore(); cin>>variable doesn't work here, when it worked elsewhere to stop the infinite loop...//
+		randomNumber1 < randomNumber2 ? correctAnswer = 1 : correctAnswer = 2;
+
+		cout << "You answered: " << numberSelection << endl << "Correct answer: " << correctAnswer << endl;
+
+		//Keep score//
+		if (numberSelection == correctAnswer) {
+			playerScore++;
+		}
+		cout << "Score: " << playerScore << endl;
+		cout << "Would you like to keep playing?" << endl << "Yes: Y" << endl << "No: any other key" << endl;
+		cin >> yesNoSelection;
+
+		while (yesNoSelection.length() > 1) {
+			cout << "That is an invalid input. Please try again." << endl;
+			cin.ignore();
+			cin >> yesNoSelection;
+		}
+	}
+
+	cout << "Thank you for playing. Goodbye!" << endl;
+	system("pause");
+    return 0;
+}
+

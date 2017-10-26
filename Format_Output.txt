@@ -1,0 +1,79 @@
+// ICP920.cpp : Defines the entry point for the console application.
+//
+//Author: Carolyn Mennecke//
+//Date: September 20, 2017//
+//Purpose: Practice formatting outputs//
+
+#include "stdafx.h"
+#include<iostream>
+#include<iomanip>
+#include<string>
+using namespace std;
+
+int main()
+{
+	//Declare variables//
+	double bananaSinglePrice = 3.99;
+	double orangeSinglePrice = 1.9;
+	double mangoSinglePrice = 12.998;
+	double lettuceSinglePrice = 0.99;
+
+	int bananaQuantity;
+	int orangeQuantity;
+	int mangoQuantity;
+	int lettuceQuantity;
+
+	double bananaTotalPrice;
+	double orangeTotalPrice;
+	double mangoTotalPrice;
+	double lettuceTotalPrice;
+
+	double orderTotal;
+
+	//Request information//
+	cout << "Welcome to Carolyn's grocery store. What will you be purchasing today?" << endl;
+	cout << "Please type the amount you are purchasing as a whole number. If you are not buying any of that item, please type 0." << endl;
+	cout << "Bananas (lb): ";
+	cin >> bananaQuantity;
+	cout << "Oranges (each): ";
+	cin >> orangeQuantity;
+	cout << "Mangoes (box): ";
+	cin >> mangoQuantity;
+	cout << "Lettuce (bunch): ";
+	cin >> lettuceQuantity;
+
+	//Do calculations//
+	bananaTotalPrice = bananaSinglePrice*bananaQuantity;
+	orangeTotalPrice = orangeSinglePrice*orangeQuantity;
+	mangoTotalPrice = mangoSinglePrice*mangoQuantity;
+	lettuceTotalPrice = lettuceSinglePrice*lettuceQuantity;
+
+	orderTotal = bananaTotalPrice + orangeTotalPrice + mangoTotalPrice + lettuceTotalPrice;
+
+	//Display//
+
+	cout << fixed << setprecision(2) << showpoint;
+	cout << "******Carolyn's Grocery Store*******" << endl;
+	cout << "Here is your receipt" << endl;
+
+	cout << left << "Bananas" << endl << setw(5) << bananaQuantity << setw(15) << "$3.99/lb";
+	cout << right << "$" << bananaTotalPrice << endl;
+
+	cout << left << "Oranges" << endl << setw(5) << orangeQuantity << setw(15) << "$1.99/each";
+	cout << right << "$" << orangeTotalPrice << endl;
+
+	cout << left << "Mangoes" << endl << setw(5) << mangoQuantity << setw(15) << "$12.998/box";
+	cout << right << "$" << mangoTotalPrice << endl;
+
+	cout << left << "Lettuce" << endl << setw(5) << lettuceQuantity << setw(15) << "$0.99/bunch";
+	cout << right << "$" << lettuceTotalPrice << endl;
+
+	cout << string(40, '-') << endl;
+
+	cout << left << setw(5) << "Total" << setw(15) << right << "$" << orderTotal << endl;
+	cout << '\n';
+	
+	system("pause");
+    return 0;
+}
+

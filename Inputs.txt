@@ -1,0 +1,56 @@
+// ICP914.cpp : Defines the entry point for the console application.
+//
+//Author: Carolyn Mennecke
+//Date: September 14, 2017
+//Purpose: Practice inputting data//
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	//Declare variables//
+	string fullName;
+	string address;
+	string age;
+	char firstInitial;
+	string expectedMonthlyIncome;
+
+	char letter;
+
+	//Prompt user to enter data//
+	cout << "Please enter the data specified, then press Enter." << endl;
+
+	cout << "Please enter your full name below." << endl;
+	getline(cin, fullName);
+
+	cout << "Please enter your address." << endl;
+	getline(cin, address);
+
+	cout << "Please enter your age." << endl;
+	cin >> age;
+
+	cout << "Please enter your first initial." << endl;
+	cin >> firstInitial;
+
+	cout << "Please enter your expected monthly income." << endl;
+	cin >> expectedMonthlyIncome;
+
+	cout << "Press Enter to show data." << endl;
+	cin.ignore();
+	letter = cin.get();
+	
+	//Display the data//
+	cout << endl<< "Name: " << fullName << endl;
+	cout << "Address: " << address << endl;
+	cout << "Age: " << age << endl;
+	cout << "First Initial: " << firstInitial << endl;
+	cout << "Expected Monthly Income: $" << expectedMonthlyIncome << endl;
+
+	//Pause the system to view results//
+	system("pause");
+    return 0;
+}
+

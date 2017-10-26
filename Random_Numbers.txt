@@ -1,0 +1,56 @@
+// ICP925.cpp : Defines the entry point for the console application.
+//
+//Author: Carolyn Mennecke//
+//Date: September 25, 2017//
+//Purpose: Generate random numbers//
+
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include<cstdlib>
+#include<ctime>
+//include other stuff//
+using namespace std;
+
+
+int main()
+{
+	//Declare variables//
+	string fullName;
+	double testScore1;
+	double testScore2;
+	double testScore3;
+
+	double testScoreAverage;
+
+	int randomNumber1;
+
+	//Request information//
+	cout << "Please enter your full name." << endl;
+	getline(cin, fullName);
+	cout << "Please enter your last three test scores." << endl;
+	cout << "Test 1: ";
+	cin >> testScore1;
+	cout << "Test 2: ";
+	cin >> testScore2;
+	cout << "Test 3: ";
+	cin >> testScore3;
+
+	//Calculate average//
+	testScoreAverage = (testScore1 + testScore2 + testScore3) / 3;
+
+	//Generate random number//
+	srand(time(0));
+	randomNumber1 = rand() % 11 + 10;
+
+	//Display information//
+	cout << fixed << setprecision(2) << showpoint;
+	cout << "Full Name: " << fullName << endl << "Average Test Score: " << testScoreAverage << endl;
+	cout << "Seat Number (randomly generated): " << randomNumber1 << endl;
+
+
+	system("pause");
+    return 0;
+}
+

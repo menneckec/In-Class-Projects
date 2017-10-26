@@ -1,0 +1,57 @@
+// ICP109.cpp : Defines the entry point for the console application.
+//
+//Author: Carolyn Mennecke//
+//Date: October 9, 2017//
+//Purpose: For loop//
+
+#include "stdafx.h"
+#include <string>
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+	//Declare variables//
+	int studentsNumber;
+	string studentNameEntry;
+	string lastStudentName;
+	string firstStudentName;
+
+	//Give directions//
+	cout << "Please enter the number of students below. There must be at least one student, and no more than 25 students: " << endl;
+	cin >> studentsNumber;	
+	while (studentsNumber < 1 || studentsNumber>25) {
+		cout << "Invalid input. Please enter a number between 1 and 25." << endl;
+		cin >> studentsNumber;
+	}
+
+	//Request input//
+	cout << "Please enter the data below: " << endl;
+	cin.ignore();
+	cout << "Student Name: ";
+	getline(cin, studentNameEntry);
+
+	firstStudentName = studentNameEntry;
+	lastStudentName = studentNameEntry;
+
+	for (int i = 1; i < studentsNumber; i++) {
+		cout << "Student Name: ";
+		getline(cin, studentNameEntry);
+		
+		if (studentNameEntry < firstStudentName) {
+			firstStudentName = studentNameEntry;
+		}
+		if (studentNameEntry > lastStudentName) {
+			lastStudentName = studentNameEntry;
+		}
+	}
+
+	//Display output//
+	cout << "The first student in line will be: " << firstStudentName << endl;
+	cout << "\nThe last student in line will be: " << lastStudentName << endl;
+
+	system("pause");
+    return 0;
+}
+

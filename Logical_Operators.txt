@@ -1,0 +1,71 @@
+// ICP102.cpp : Defines the entry point for the console application.
+//
+//Author: Carolyn Mennecke//
+//Date: October 2, 2017//
+//Purpose: logical operators//
+
+#include "stdafx.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+
+int main()
+{
+	//Declare variables and constants//
+	const double BANK_FEE = 10.00;
+	const double WARNING_FEE = 15.00;
+
+	double checkFees;
+	double beginningBalance;
+	double checkQuantity;
+	double totalFees;
+
+	//Request input//
+	cout << "Welcome to the bank. Please enter your current account balance below." << endl;
+	cin >> beginningBalance;
+
+	cout << "Monthly surcharge:" << right << fixed << setprecision(2) << showpoint << setw(50)<< "$" << BANK_FEE << endl;
+	cout << left << "Low balance surcharge (if balance is below $400):" << right << setw(50)<< "$" << WARNING_FEE << endl;
+	cout << left << "The following amounts are based on how many checks were written in the past month (per check written)." << endl;
+	cout << "Less than 20: " << right << "$0.10" << endl;
+	cout << "Between 20 and 39: " <<right << setw(50) << "$0.08" << endl;
+	cout << "Between 39 and 59: " <<right << setw(50) << "$0.06" << endl;
+	cout << "Greater than 59: " <<right << setw(50) << "$0.04" << endl;
+
+	if (beginningBalance < 0) {
+		cout << "URGENT" << endl << "YOUR ACCOUNT IS OVERDRAWN. PLEASE CONTACT US TO RESOLVE THIS ISSUE." << endl;
+		system("pause");
+		return 0;
+	}
+	else
+	cout << "Thank you." << endl << "Please enter the number of checks written this month: ";
+	cin >> checkQuantity;
+
+	//Calculate costs//
+	if (checkQuantity < 0) {
+		cout << "That input is invalid. Please enter a positive integer." << endl;
+		system("pause");
+		return 0;
+	}
+	else if (checkQuantity < 20) { checkFees = .1*checkQuantity; }
+	else if (checkQuantity >= 20 && checkQuantity <= 39) { checkFees = .08*checkQuantity; }
+	else if (checkQuantity > 39 && checkQuantity <= 59) { checkFees = .06*checkQuantity; }
+	else checkFees = .04*checkQuantity;
+
+	totalFees = checkFees + BANK_FEE;
+
+	if (beginningBalance < 400) {
+		totalFees += WARNING_FEE;
+		cout << "WARNING: Your account balance is low. You will be charged a fee." << endl;
+	}
+
+	//Display results//
+
+	cout << fixed << setprecision(2) << showpoint << "Here are your total fees: $" << totalFees << endl;
+	cout << "If you feel this is in error, or you would like an itemized receipt, please contact us at (123)456-7890." << endl << "Thank you and have a nice day." << endl;
+
+	system("pause");
+    return 0;
+}
+
