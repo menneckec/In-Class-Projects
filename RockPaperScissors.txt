@@ -1,0 +1,111 @@
+// RockPaperScissors.cpp : Defines the entry point for the console application.
+//
+//Author: Carolyn Mennecke//
+//Date: //
+//Purpose: Rock, Paper, Scissors Game//
+
+#include "stdafx.h"
+#include <random>
+#include <ctime>
+#include <iostream>
+using namespace std;
+
+void rockSelection(int userRockSelection);
+void paperSelection(int userPaperSelection);
+void scissorsSelection(int userScissorsSelection);
+
+int computerRPSSelection;
+int score;
+
+int main()
+{
+	//Declare variables//
+	char newGameSelection;
+	int userRPSSelection;
+
+	//Give directions//
+	cout << "ROCK, PAPER, SCISSORS\n" << endl;
+	cout << "Type N to start a new game." << endl;
+	cin >> newGameSelection;
+	if (newGameSelection != 'n' && newGameSelection != 'N') {
+		cout << "Are you sure you want to quit?" << endl;
+		cout << "No - continue with game: N" << endl << "Yes - quit: any other key" << endl;
+		cin >> newGameSelection;
+		if (newGameSelection != 'n' && newGameSelection != 'N') return 0;
+	}
+
+	while (newGameSelection == 'n' || newGameSelection == 'N') {
+		srand(time(0));
+		computerRPSSelection = rand() % 3 + 1;
+
+		cout << "Choose Rock, Paper, or Scissors." << endl;
+		cout << "Rock: 1\nPaper: 2\nScissors: 3" << endl;
+		cin >> userRPSSelection;
+		while (userRPSSelection != 1 && userRPSSelection != 2 && userRPSSelection != 3) {
+			cout << "That is an invalid input. Choose 1, 2, or 3.";
+			cin >> userRPSSelection;
+		}
+		if (userRPSSelection == 1) rockSelection(userRPSSelection);
+		else if (userRPSSelection == 2) paperSelection(userRPSSelection);
+		else if (userRPSSelection == 3) scissorsSelection(userRPSSelection);
+
+		cout << "Press N to play again, or any other key to quit." << endl;
+		cin >> newGameSelection;
+	}
+	
+	cout << "Score: " << score << endl;
+	system("pause");
+    return 0;
+}
+
+void rockSelection(int userRockSelection) {
+	if (computerRPSSelection != userRockSelection) {
+		cout << "You chose rock. The computer chose ";
+		if (computerRPSSelection == 2) {
+			cout << "paper." << endl;
+			cout << "The computer wins!" << endl;
+			score--;
+		}
+		else if (computerRPSSelection == 3) {
+			cout << "scissors." << endl;
+			cout << "You win!" << endl;
+			score++;
+		}
+	}
+	else cout << "Both you and the computer chose rock. It's a tie!\nPlay again to determine a winner." << endl;
+}
+void paperSelection(int userPaperSelection) {
+	if (computerRPSSelection != userPaperSelection) {
+		cout << "You chose paper. The computer chose ";
+		if (computerRPSSelection == 1) {
+			cout << "rock." << endl;
+			cout << "You win!" << endl;
+			score++;
+		}
+		else if (computerRPSSelection == 3) {
+			cout << "scissors." << endl;
+			cout << "The computer wins!" << endl;
+			score--;
+		}
+	}
+	else cout << "Both you and the computer chose paper. It's a tie!\nPlay again to determine a winner." << endl;
+
+}
+void scissorsSelection(int userScissorsSelection) {
+	if (computerRPSSelection != userScissorsSelection) {
+		cout << "You chose scissors. The computer chose ";
+		if (computerRPSSelection == 2) {
+			cout << "paper." << endl;
+			cout << "You win!" << endl;
+			score++;
+		}
+		else if (computerRPSSelection == 1) {
+			cout << "rock." << endl;
+			cout << "The computer wins!" << endl;
+			score--;
+		}
+	}
+	else cout << "Both you and the computer chose scissors. It's a tie!\nPlay again to determine a winner." << endl;
+
+}
+
